@@ -49,13 +49,13 @@ class Mediator{
 
 class BookSub{
 
-	constructor(name, size, bookPub){
+	constructor(name, shopSize, bookPub){
 
 		this.name = name;
-		this.shopSize = size;
+		this.shopSize = shopSize;
 		this.Books = bookPub.Books;
 
-		if(size === "small")
+		if(shopSize === "small")
 			medObj.limitedStockSaleSub.push(name);
 		else
 			medObj.announceSaleSub.push(name);
