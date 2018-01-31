@@ -18,7 +18,6 @@ PM.prototype.introPM = function(cname){
 }
 
 function State(sname){
-	// Country.call(this, sname);
 	this.sname = sname;
 }
 
@@ -48,9 +47,7 @@ var India = new Country("India");
 India.introCountry();
 
 var Gujarat = new State("Gujarat");
-// Gujarat.introCountry();
 Gujarat.introState();
-// Gujarat.introState();
 
 var Modi = new PM("Narendra Modi");
 Modi.introPM("India");
