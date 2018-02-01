@@ -1,47 +1,13 @@
 // 3. Write a javascript code that demonstrate concept of constructor. Make constructor using
 // ‘prototype’ and ‘observer’ design patterns.
 
+
+// Emp is object
+
 class Emp{
 
 	constructor(name,id,salary){
 		this.name = name;
-		this.id = id;
-		this.salary = salary;
-		this.empArr = [];
-		this.promotionSubscribe = [];
-	}
-
-	promotion(salary){
-		this.salary = salary;
-
-		this.promotionSubscribe.forEach((subscriber) => {
-			console.log("Dear " + subscriber + ", you have been promoted!");
-		});
-	}
-
-	doSubscribe(event, name, subObj){
-		if( event === "promotion")
-			subObj.promotionSubscribe.push(name);
-		else
-			console.log(event + "-> No such event exists");
-		
-		console.log(subObj.promotionSubscribe);
-		console.log(name + " has subscribed " + event + " successfully!");
-	}
-
-	doUnsubscribe(event, name, subObj){
-		if( event === "promotion"){
-			var subscriberIndex = subObj.promotionSubscribe.indexOf(name);
-			
-			if(subscriberIndex !== -1){	
-				subObj.promotionSubscribe.splice(subscriberIndex, 1);	
-				console.log(name + " has unsubscribed " + event + " successfully!");
-			}
-			else
-				console.log(name + " has not subscribed " + event);
-		}
-		else
-			console.log(event + "-> No such event exists");
 	}
 
 	giveIntro(){
@@ -54,32 +20,76 @@ class Emp{
  	getName()	{	return this.name;	}	
 }
 
+
+// EmpPrototype is Subject
+
 class EmpPrototype{
 
-	constructor(name, proto){
-		this.name = name;
-		this.id = proto.id;
-		this.salary = proto.salary;
-		this.giveIntro = proto.giveIntro;
-		this.setName = proto.setName;
-		this.getName = proto.getName;
-		this.doSubscribe = proto.doSubscribe;
-		this.doUnsubscribe = proto.doUnsubscribe;
-		proto.empArr.push(this);
-		console.log("proto.empArr: ", proto.empArr);
+	constructor(proto){
+		this.proto = proto;
+		this.promotionSubscribe = [];
+	}
+
+	clone(name){
+
+		let newEmp = new Emp(); 
 		
-		return this;
+		newEmp.name = name;
+		newEmp.id = this.proto.id;
+		newEmp.salary = this.proto.salary;
+		newEmp.giveIntro = this.proto.giveIntro;
+		newEmp.setName = this.proto.setName;
+		newEmp.getName = this.proto.getName;
+
+		return newEmp;
+	}
+
+	promotion(salary){
+		this.salary = salary;
+
+		this.promotionSubscribe.forEach((subscriber) => {
+			console.log("Dear " + subscriber + ", you have been promoted!");
+		});
+	}
+
+	doSubscribe(event, name){
+		if( event === "promotion"){
+			this.promotionSubscribe.push(name);
+			console.log(name + " has subscribed " + event + " successfully!");
+		}
+		else
+			console.log(event + "-> No such event exists");
+		
+		console.log(this.promotionSubscribe);		
+	}
+
+	doUnsubscribe(event, name){
+		if( event === "promotion"){
+			let subscriberIndex = this.promotionSubscribe.indexOf(name);
+			
+			if(subscriberIndex !== -1){	
+				this.promotionSubscribe.splice(subscriberIndex, 1);	
+				console.log(name + " has unsubscribed " + event + " successfully!");
+			}
+			else
+				console.log(name + " has not subscribed " + event);
+		}
+		else
+			console.log(event + "-> No such event exists");
 	}
 }
 
-var idealEmp = new Emp("naeim",1234,"1cr");
-var Emp1 = new EmpPrototype("Emp1", idealEmp);
-var Emp2 = new EmpPrototype("Suresh",idealEmp);
+let idealEmp = new Emp("naeim",1234,"1cr");
+let protoObj = new EmpPrototype(idealEmp);
+
+let Emp1 = protoObj.clone("Emp1");
+let Emp2 = protoObj.clone("Suresh");
 
 Emp1.setName("Ramesh");
 
-Emp1.doSubscribe("promotion", Emp1.name, idealEmp);
-Emp2.doSubscribe("promwwotion", Emp2.name, idealEmp);
-Emp1.doUnsubscribe("promotddion", Emp1.name, idealEmp);
+protoObj.doSubscribe("promotion", Emp1.name);
+protoObj.doSubscribe("promwwotion", Emp2.name);
+protoObj.doSubscribe("promotion", Emp2.name);
+protoObj.doUnsubscribe("promotddion", Emp1.name);
 
-idealEmp.promotion(100);
+protoObj.promotion(100);

@@ -33,11 +33,11 @@ class Car{
 	}
 }
 
-var car1 = carFactory.carType("sports");
+let car1 = carFactory.carType("sports");
 console.log(car1.carIntro());
 
-var car2 = carFactory.carType("luxury");
+let car2 = carFactory.carType("luxury");
 console.log(car2.carIntro());
 
-var car3 = carFactory.carType();
+let car3 = carFactory.carType();
 console.log(car3.carIntro());
