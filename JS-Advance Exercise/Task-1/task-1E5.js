@@ -1,3 +1,6 @@
+// 1. Write a javascript code that demonstrate concept of inheritance. a) simple, b) multilevel,
+// c) hierarchical
+
 function Country(name){
 	this.name = name;
 }

@@ -1,11 +1,20 @@
-.school{
+.container{
+	margin: 30px auto;
+	text-align: center;
+}
 
+.school{
+	height: 30vh;
 }
 
 .college{
-
+	height: 30vh;	
 }
 
 .office{
-	
+	height: 30vh;
+}
+
+p{
+	display: inline;
 }
