@@ -1,0 +1,1 @@
+//  No symbol method in ES5

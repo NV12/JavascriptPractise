@@ -1,0 +1,1 @@
+// No static method in ES5
