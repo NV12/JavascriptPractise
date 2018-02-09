@@ -1,7 +1,9 @@
 // 6. Write a javascript code that demonstrate concept of factory method.
 
+// Factory for creating various types of cars
 class carFactory{
 
+	// Method for creating the cars
 	static carType(spec){
 		if(spec === "sports")
 			return new SportsCar();
@@ -11,6 +13,8 @@ class carFactory{
 			return new Car();
 	}
 }
+
+// Types Car: SportsCar, LuxuryCar and OrdinaryCar
 
 class SportsCar{
 
@@ -33,6 +37,7 @@ class Car{
 	}
 }
 
+// Testing
 let car1 = carFactory.carType("sports");
 console.log(car1.carIntro());
 

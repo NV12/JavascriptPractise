@@ -1,9 +1,8 @@
-// 3. Write a javascript code that demonstrate concept of constructor. Make constructor using
-// ‘prototype’ and ‘observer’ design patterns.
+/*3. Write a javascript code that demonstrate concept of constructor. Make constructor using
+‘prototype’ and ‘observer’ design patterns.*/
 
 
-// Emp is object
-
+// Emp is object for the observer pattern
 class Emp{
 
 	constructor(name,id,salary){
@@ -15,14 +14,12 @@ class Emp{
 	}	
 
 	//Additional getter-setter methods
-
  	setName(name)	{	this.name = name;	}
  	getName()	{	return this.name;	}	
 }
 
 
-// EmpPrototype is Subject
-
+// EmpPrototype is Subject for the observer pattern
 class EmpPrototype{
 
 	constructor(proto){
@@ -30,6 +27,7 @@ class EmpPrototype{
 		this.promotionSubscribe = [];
 	}
 
+	// Clone method return a new object of Emp
 	clone(name){
 
 		let newEmp = new Emp(); 
@@ -44,6 +42,7 @@ class EmpPrototype{
 		return newEmp;
 	}
 
+	// Event 
 	promotion(salary){
 		this.salary = salary;
 
@@ -52,7 +51,10 @@ class EmpPrototype{
 		});
 	}
 
+	// Subscribe-Unsubscribe Methods
+
 	doSubscribe(event, name){
+		// Pushing the subscribers of Promotion into the promotionSubscribe array
 		if( event === "promotion"){
 			this.promotionSubscribe.push(name);
 			console.log(name + " has subscribed " + event + " successfully!");
@@ -64,6 +66,7 @@ class EmpPrototype{
 	}
 
 	doUnsubscribe(event, name){
+		// Popping the subscriber of Promotion into the promotionSubscribe array
 		if( event === "promotion"){
 			let subscriberIndex = this.promotionSubscribe.indexOf(name);
 			
@@ -79,6 +82,7 @@ class EmpPrototype{
 	}
 }
 
+// Testing the patterns 
 let idealEmp = new Emp("naeim",1234,"1cr");
 let protoObj = new EmpPrototype(idealEmp);
 

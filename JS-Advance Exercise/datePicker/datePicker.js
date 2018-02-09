@@ -1,10 +1,13 @@
+/*This datepicker follows pubsub design pattern*/
+
+
 // Declaring all important variables at a single place
 let date, month, year, dateOfWeek, dateOfYear, dateWhole;
 let monthArr = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 const DAY_NAMES = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 // This class describes the subscribers
-class Modules{
+class Module{
 
 	// Checking whether the year is leap year or not
 	checkLeapYear(year){
@@ -86,11 +89,18 @@ class Modules{
 		dateOfYear = this.calculateDOY(date, monthArr, month);
 		dateOfWeek = this.calculateDOW(dateWhole, month, date);
 	}
+
+	// method to call all operations
+	allOperations(datepicker, target){
+		this.setAllDates(datepicker);
+		this.displayAllDates(target);
+	}
 }
 
 // This class defines events to be fired upon subscibers 
 class Mediater{
 
+	// Event
 	// Change dates from all subscribers when changeAll button gets pressed
 	changeAllDates(subscriber, datepickerObjID, accessObj){
 
@@ -104,37 +114,30 @@ class Mediater{
 
 }
 
+// Object to access all class methods
+let accessObj = new Module();
+
 $(document).ready(function(){
 
-	let school, college, office, event1;
+	let event1, eventSubsArr = [];
 
+	// Modules which are using datepicker
 	$("#datepicker1").change(function(){
-		school = new Modules();
-
-		school.setAllDates("datepicker1");	
-		school.displayAllDates("answerForSchool");
+		accessObj.allOperations("datepicker1", "answerForSchool");
 	});
 
 	$("#datepicker2").change(function(){
-		college = new Modules();
-		
-		college.setAllDates("datepicker2");	
-		college.displayAllDates("answerForCollege");
+		accessObj.allOperations("datepicker2", "answerForCollege");	
 	});
 
 	$("#datepicker3").change(function(){
-		office = new Modules();
-
-		office.setAllDates("datepicker3");	
-		office.displayAllDates("answerForOffice");
+		accessObj.allOperations("datepicker3", "answerForOffice");
 	});
 
 	// Mediater method having subscribers list
 	$(".changeAll").click(function(){
-		let eventSubsArr = ["answerForSchool", "answerForCollege", "answerForOffice"];
-		let accessObj = new Modules();
-		event1 = new Mediater();
-
+		eventSubsArr = ["answerForSchool", "answerForCollege", "answerForOffice"];
+		 
 		// Test case: Checking whether date is empty or already chosen
 		if(!($("#datepicker"+ this.id).val())){
 			alert("Select date first!");
@@ -142,6 +145,7 @@ $(document).ready(function(){
 		}
 
 		// Firing event upon all subscribers
+		event1 = new Mediater();
 		eventSubsArr.forEach((subscriber) => {
 			event1.changeAllDates(subscriber, this.id, accessObj);
 		});

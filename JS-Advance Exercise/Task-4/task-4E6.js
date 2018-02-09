@@ -11,6 +11,8 @@ class Demo{
 }
 
 var weNeedVariable = new Demo();
+
 weNeedVariable.donTheme1();
 
+// No need to create Object of Demo to call donTheme2 method (static method)
 Demo.donTheme2();

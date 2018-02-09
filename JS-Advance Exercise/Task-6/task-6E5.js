@@ -1,11 +1,13 @@
 // 6. Write a javascript code that demonstrate concept of factory method.
 
+// Factory class to create cars
 function CarFactory(factoryName){
 	this.factoryName = factoryName;
 }
 
 CarFactory.prototype = {
 
+	// Method to create various types of car
 	carType : function(type, name){
 		if(type === "sports")
 			return new SportsCar(name);
@@ -15,6 +17,8 @@ CarFactory.prototype = {
 			return new Car(name);
 	}
 }
+
+// Types of car: SportsCar, LuxuryCar and OrdinaryCar
 
 function SportsCar(name){
 	this.name = name;

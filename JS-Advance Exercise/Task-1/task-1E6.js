@@ -1,12 +1,14 @@
 // 1. Write a javascript code that demonstrate concept of inheritance. a) simple, b) multilevel,
 // c) hierarchical
 
+
 class India{
 	
 	belongsTo(){
 		alert("Multilevel: All states belongs to Country: India");
 	}
 }
+
 
 class Gujarat extends India{
 
