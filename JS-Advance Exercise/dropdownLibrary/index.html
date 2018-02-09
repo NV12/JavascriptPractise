@@ -13,20 +13,31 @@
 </head>
 <body>
 
-<div class="dropdownTarget"></div>
-<!-- <input type="text"> -->
 
-
-<p id="ji">fdsadfa</p>
-
-<div class="dropdownTarget"></div>
-<div class="dropdownTarget"></div>
-<div class="dropdownTarget"></div>
+<div class="container">
+	 <form class="form-horizontal" action="/action_page.php">
+	 <h1>College Registraion Form</h1>
+	 <br>
+  		<div class="form-group">
+    		<label class="control-label col-sm-2" for="email" align="left">Email:</label>
+    		<div class="col-sm-10">
+      		<input type="email" class="form-control" id="email" placeholder="Enter email">
+    		</div>
+		</div>
+		<div class="form-group">
+		    <label class="control-label col-sm-2" for="pwd">Password:</label>
+		    <div class="col-sm-10">
+		      <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+		    </div>
+		</div>
+		<div class="form-group">
+		    <label class="control-label col-sm-2" for="dropdown">Residence:</label>
+		    <div class="col-sm-10">
+		      <div class="dropdownTarget"></div>
+		    </div>
+		</div>
+  	</form> 
+</div>
 <script type="text/javascript" src="dropdownLib.js"></script>
-<!-- <script>
-		$(function(){
-			$(".allMenus").addMenus();
-		});
-</script> --> 
 </body>
 </html>

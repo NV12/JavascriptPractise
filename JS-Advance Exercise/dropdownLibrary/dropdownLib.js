@@ -19,9 +19,6 @@
 				Dropdowns.prototype.addDropdown("State", targetObj);
 				Dropdowns.prototype.addDropdown("City", targetObj);
 			});
-			$.getJSON("states.json", function(data){
-				// console.log("state", data[Object.keys(data)[0]][0]);
-			});
 		},
 
 		// Function to add dropdown 
@@ -30,7 +27,7 @@
 			
 			// Label to specify the dropdown name
 
-			var label = document.createElement("label");
+			// var label = document.createElement("label");
 			Dropdowns.prototype.createDropdowns(dropdownName, target);
 		},
 
